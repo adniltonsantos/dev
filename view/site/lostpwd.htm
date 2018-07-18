@@ -1,0 +1,73 @@
+<div class="forgetsenha">
+
+<label><h2 class="centralizar">Recuperação de Senha</h2></label>
+    
+  <!--FORMULARIO DE RESGATE SENHA -->
+  <div ng-hide="formResgate">
+        
+        <!-- Mensagem do form Resgate-->
+        <div class="alert alert-danger" ng-hide="mensagemResgate">
+          <strong>Ops!</strong> Não existe nenhuma solicitação de resgate de senha.
+        </div>
+
+        <form name="resgateSenha" ng-submit="verifica(resgate)">
+            <div class="row">
+
+              <div class="col-md-12">
+                <div class="form-group"> 
+                  <input type="text" class="form-control" ng-model="resgate.codigo" placeholder="Insira o Código de Resgate">
+                </div>
+              </div>
+
+
+              <div class="col-md-2">
+                <div class="form-group"> 
+                  <button type="submit" class="btn btn-primary">Enviar</button> 
+                </div>
+              </div>
+
+            </div>
+
+        </form>   
+  </div>
+
+  <!--FORMULARIO DE SENHA -->
+  <div class="formUpdateSenha" ng-hide="formUpdate">
+
+        <!-- Mensagem do form Resgate-->
+        <div class="alert alert-danger" ng-hide="mensagemSenha">
+          <strong>Ops!</strong> Senhas não conferem.
+        </div>
+
+        <!-- Mensagem do form Resgate-->
+        <div class="alert alert-success" ng-hide="mensagemSenhaSucesso">
+          <strong>Ótimo!</strong> Sua senha foi atualizado com sucesso. 
+        </div>
+
+        <form name="formSenha" ng-submit="updateSenha(senha)">
+          
+          <div class="row">
+            
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="password" class="form-control" ng-model="senha.um" placeholder="Nova Senha">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                 <input type="password" class="form-control" ng-model="senha.dois" placeholder="Repetir Senha">
+              </div>
+            </div>      
+
+              <div class="col-md-2">
+                <div class="form-group"> 
+                  <button type="submit" class="btn btn-primary">Atualizar</button> 
+                </div>
+              </div>
+
+          </div>
+        </form>
+ </div>
+
+</div><!--END forgetsenha -->

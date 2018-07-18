@@ -1,0 +1,248 @@
+<div class="bkg-fundo">
+    <img src="view/imagens/bkg.jpeg" class="bg" alt="">
+
+<!-- Pluing de Curtir do Facebook-->
+<div id="fb-root">
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.9&appId=110006319561262";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+
+  <div class="fb-like" data-href="https://www.facebook.com/imobiliar.net.br/" data-width="480px" 
+  data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+  </div>
+
+</div>
+<!-- Seach do Site-->
+<div class="bloco-search">
+  
+  
+  <label>Procure o seu Ímovel</label>
+<form ng-submit="formCidade(imovel.idCidade)">
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <select  dw-loading="estados"ng-change="executeCidade(imovel.id)" 
+          ng-options="imovel.id as imovel.nome for imovel in estados track by imovel.id" 
+          ng-model="imovel.id">
+
+            <option value="" >Selecione Estado</option>
+        </select>
+       </div>
+      </div>
+
+    <div class="col-md-5">
+      <div class="form-group">
+<select ng-change="executeBairro(imovel.idCidade)" ng-disabled="!imovel.id" ng-options="c.id as c.nome for c in cidades | filter: {estado: imovel.id}" ng-model="imovel.idCidade">
+<option value="">Selecione Cidade</option>
+</select>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+      </div>
+    </div>
+  </div><!-- fecha row -->
+
+</form>
+</div>
+
+
+<!-- Nova Conta do Site-->
+<div class="bloco-form-conta" ng-hide="formConta">
+           <div class="tituloConta">Nova Conta</div>
+
+            <div class="alert alert-danger" ng-show="mensagemSenha">
+            <strong>Senhas!</strong> não estão iguais.
+            </div>
+
+            <div class="alert alert-success" ng-show="mensagemSucesso">
+            <strong>Sucesso!</strong> Dados Cadastrado com Sucesso , enviado um e-mail para ativação do seu cadastro.
+            </div>
+          <form name="formUsuario" ng-submit="add(usuario)">
+
+               <div class="row">
+                   <div class="col-md-5">
+                   <div class="form-group">
+                        <input type="text" class="form-control cpf" id="cpf" placeholder="Nome" ng-model="usuario.nomeUsuario" required>
+                   </div>
+              </div>
+
+                   <div class="col-md-7">
+                   <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Sobrenome" ng-model="usuario.sobrenomeUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+               <div class="row">
+                   <div class="col-md-8">
+                   <div class="form-group">
+                        <input type="email" class="form-control" placeholder="E-mail" ng-model="usuario.emailUsuario" required>
+                   </div>
+              </div>
+
+                   <div class="col-md-4">
+                   <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Creci" ng-model="usuario.creciUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Senha" ng-model="usuario.senhaUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Confime a Senha" ng-model="usuario.senha" required>
+                   </div>
+              </div>
+              </div>
+
+<div class="termos">
+ <input type="checkbox" ng-model="usuario.termoUsuario"> Eu li e concordo com os termos de uso da Politica de Privacidade</a>.
+</div>
+
+<button type="submit" class="btn btn-primary">Salvar Dados</button>
+
+          </form>
+
+       </div>
+
+
+<!-- FORM CONTA FACEBBOK-->
+
+<div class="bloco-form-conta-facebook" ng-show="formContaFB">
+
+<!-- NOVA CONTA NO SITE COM FACEBOOK-->
+
+          Olá, <strong>{{nomeFacebook}}</strong>, possui cadastro em nosso site ? 
+          <br><br>
+
+          <center>
+              <button ng-click="contaSim()">SIM</button> 
+              <button ng-click="contaNao()">NÃO</button> 
+          </center>
+
+          <div ng-show="formMigraFacebook">
+             <br><br>
+          <strong>Sim</strong>, preecha seu e-mail e senha para vincular a sua conta no facebook.
+          <br><br>
+          <!-- MIGRAR PARA FACEBOOK -->
+
+            <div class="alert alert-success" ng-show="mensagemSucesso">
+            <strong>Sucesso!</strong> Dados Cadastrado com Sucesso , enviado um e-mail para ativação do seu cadastro.
+            </div>
+
+          <form name="formUsuario" ng-submit="migrar(usuario)">
+
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" ng-model="usuario.emailUsuario" required>
+                   </div>
+              </div>
+               </div>
+
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" ng-model="usuario.senhaUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+          <button type="submit" class="btn btn-primary">Migrar</button>
+
+          </form>
+          </div>
+
+          <div ng-show="formContaFacebook">
+          <br>
+          <strong>Não</strong>, crie uma conta com seus dados do Facebbok.
+          <br> <br>
+
+          <form name="formUsuario" ng-submit="addFB(usuario)">
+{{mensagemSenha}}
+            <div class="alert alert-danger" ng-show="mensagemSenha">
+            <strong>Senhas!</strong> não estão iguais.
+            </div>
+
+               <div class="row">
+                   <div class="col-md-5">
+                   <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" ng-model="usuario.nomeUsuario" required>
+                   </div>
+              </div>
+
+                   <div class="col-md-7">
+                   <div class="form-group">
+                        <label>Sobrenome</label>
+                        <input type="text" class="form-control" ng-model="usuario.sobrenomeUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+               <div class="row">
+                   <div class="col-md-8">
+                   <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" ng-model="usuario.emailUsuario" required>
+                   </div>
+              </div>
+
+                   <div class="col-md-4">
+                   <div class="form-group">
+                        <label>Creci</label>
+                        <input type="text" class="form-control" ng-model="usuario.creciUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" ng-model="usuario.senhaUsuario" required>
+                   </div>
+              </div>
+              </div>
+
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="form-group">
+                        <label>Confime a Senha</label>
+                        <input type="password" class="form-control" ng-model="usuario.senha" required>
+                   </div>
+              </div>
+              </div>
+
+              <div class="termos">
+              <input type="checkbox" ng-model="usuario.termoUsuario"> Eu li e concordo com os termos de uso da Politica de Privacidade</a>.
+              </div>
+
+              <button type="submit" class="btn btn-primary">Salvar Dados</button>
+
+          </form>
+
+  </div>
+ </div>
+
+</div>

@@ -1,0 +1,612 @@
+<div class="template">
+
+    <!-- Mensagens-->
+    <div class="row">
+      <div class="col col-md-12">
+
+        <div class="alert alert-success" ng-hide="mensagemSucesso">
+          <strong>Sucesso!</strong> Dados cadastrado com sucesso.
+        </div>
+
+        <div class="alert alert-warning" ng-hide="mensagemAtualizado">
+          <strong>Sucesso!</strong> Dados alterado com sucesso.
+        </div>
+
+        <div class="alert alert-danger" ng-hide="mensagemDelete">
+          <strong>Sucesso!</strong> Dados deletado com sucesso.
+        </div>
+
+    </div>
+    </div>
+
+
+
+     <!-- Topo Template-->
+    <div class="row">
+
+      <div class="col col-md-4 labelTemplate">
+          <i class="fa fa-graduation-cap fa-lg" aria-hidden="true"></i>
+          <label>Painel de Ações do Imoveis</label>
+
+      </div>
+
+       <div class="col col-md-4">
+         <div class="input-group margin-bottom-sm">
+    			 <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+    			 <input class="form-control" type="text" ng-model="busca" placeholder="Procure" required="required">
+			   </div>
+       </div>
+
+       <div class="col col-md-4">
+          <div class="acaoTemplate">
+              <button type="button" ng-click="novo();" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-post">Novo <i class="fa fa-file-o" aria-hidden="true"></i></button>
+
+              <button type="button" ng-click="novo();" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-filtro">Filtro <i class="fa fa-filter" aria-hidden="true"></i></button>
+
+         </div>
+       </div>
+
+
+    </div>
+
+ <!-- Corpo Templatpwee-->
+    <div class="row corpoTemplate">
+
+        <div class="col col-md-12">
+            <table class="table table-hover corpoTableTemplate" style="height: 100px;">
+              <thead>
+                <tr>
+                  <th class="centro">Ref</th>
+                  <th class="centro">Publicação</th>
+                  <th class="cent">Foto Principal</th>
+                  <th class="centro">Tipo</th>
+                  <th class="centro">Preço</th>
+                  <th class="centro">Endereço</th>
+                  <th class="centro">Alterar</th>
+                  <th class="centro">Deletar</th>
+                </tr>
+              </thead>
+
+            <tbody>
+
+             <tr ng-repeat="x in imovelFiltro | filter: busca" ng-if="listFiltro == 'ativo'">
+             <tr ng-repeat="x in imovelList | filter: busca" ng-if="listPadrao == 'ativo'">
+                
+               <td><span class="align-middle">{{x.idImovel}}</span></td>
+               <td class="centro" >{{x.isPublic}}</td>
+               <td><a class="btn btn-default" ng-click="modalUpdateFotos(x.idImovel)" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg-modalSlideFotos">
+                   <img src="view/galeria/casa01.jpg" width="125" height="100"></a>
+               </td>
+               <td class="centro">{{x.tipoOperacaoImovel}}</td>
+
+               <td class="centro">
+                   R$ {{x.valorVendaImovel}}
+               </td>
+
+                <td class="centro">
+                   {{logradouroImovel}} <br>
+                   {{bairroImovel}},  {{cidadeImovel}} - {{estadoImovel}}
+
+                </td>
+
+               <td class="centro">
+                   <a class="btn btn-default" ng-click="modalUpdateProprietario(x.idImovel)" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg-UpdateProprietario"><i class="fa fa-user" aria-hidden="true"></i> </a>
+
+                   <a class="btn btn-default" ng-click="modalUpdateEndereco(x.fkEndereco)" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg-UpdateEndereco">
+                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                  </a>
+                    <a class="btn btn-default" ng-click="modalUpdateImovel(x.idImovel)" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg-UpdateImovel">
+                   <i class="fa fa-home" aria-hidden="true"></i>
+                 </a>
+                   <a class="btn btn-default" ng-click="modalUpdateFotos(x.idImovel)" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg-modalUpdateFotos">
+                   <i class="fa fa-picture-o" aria-hidden="true"></i>
+                 </a>
+
+
+               </td>
+
+                 <td class="centro">
+                     <a class="btn btn-default" ng-click="dados(x.idCliente)" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg-delete" ><i class="fa fa-trash-o "></i></a>
+               </td>
+
+                </tr>
+
+
+
+
+
+            </tbody>
+
+            </table>
+
+        </div>
+
+ 
+
+  <!-- Modal Novo -->
+<div class="modal fade bs-example-modal-lg-post" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="closeModalPost">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cadastrar Imovel</h4>
+      </div>
+
+
+           <div class="modal-body">
+
+<!-- FORMULARIO QUE CHECK O CPF -->
+                  <div class="row" ng-if="formCPF == 'ativo'">
+
+                      <form name="FormCPF" ng-submit="checkCPF(proprietario)">
+
+                          <div class="col-md-4">
+                          <div class="form-group">
+                              <label>CPF</label>
+                              <input type="text" class="form-control" ng-model="proprietario.cpfProprietario" ui-br-cpf-mask>
+                          </div>
+                          </div>
+
+                          <div class="col-md-2">
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-primary" style="margin-top:25px;"><i class="fa fa-search" aria-hidden="true"></i></button>
+                          </div>
+                          </div>
+                      </form>
+
+                  </div>
+
+<!-- AO VERIFICAR O CPF PRINTA NA TELA O DADOS DO PROPRIETARIO OU FORMULARIO EM BRANCO -->
+    <div ng-if="formProprietario == 'ativo'">
+        <div class="row">
+             <form name="first" ng-submit="primeiroPasso(proprietario)" novalidate>
+
+            <div class="alert alert-info">
+                <strong>Novo Proprietário!</strong> Não foi encontrado nenhum proprietário nos seus registro com este cpf , deseja realmente criar um novo ?
+            </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" class="form-control" ng-model="proprietario.nomeProprietario" required>
+                </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" class="form-control" ng-model="proprietario.cpfProprietario" disabled ui-br-cpf-mask>
+                </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" ng-model="proprietario.emailProprietario" >
+                </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label>Telefone</label>
+                    <input type="text" class="form-control" ng-model="proprietario.telefoneProprietario" ui-br-phone-number>
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                <hr>
+
+                <button type="submit" class="btn btn-primary">Avançar</button>
+                <button ng-click="back('cpf')" class="btn btn-danger">Voltar</button>
+                </div>
+                </div>
+
+
+
+         </form>
+               </div><!-- row -->
+               </div><!-- FORM PROPRIETÁRIO -->
+
+
+    <!-- FORMULARIO ENDEREÇOS -->
+    <div ng-if="formEndereco == 'ativo'">
+        <div class="row">
+             <form name="second" ng-submit="segundoPasso(endereco)">
+
+                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" class="form-control" ng-model="endereco.logradouro">
+                     </div>
+                 </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label>Estado</label>
+                        <select class="form-control" ng-change="executeCidade(endereco.idEstado)"
+                        ng-options="endereco.idEstado as endereco.nome for endereco in estados track by endereco.idEstado"
+                        ng-model="endereco.idEstado">                       
+                        <option value="">Selecione Estado</option>
+                        </select>
+                </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label>Cidade</label>
+                        <select class="form-control" ng-change="executeBairro(endereco.idCidade)" ng-disabled="!endereco.idEstado"
+                        ng-options="c.idCidade as c.nome for c in cidades | filter: {estadoId: endereco.idEstado}"
+                         ng-model="endereco.idCidade">
+                        <option value="">Selecione Cidade</option>
+                        </select>
+                </div>
+                </div>
+
+                        <div class="col-md-3">
+                        <div class="form-group">
+                        <label>Bairro</label>
+                         <!-- InputBairro novo Bairro -->
+                        <div ng-show="inputBairro">
+                        <input type="text" class="form-control" ng-model="endereco.idBairro" placeholder="Novo Bairro" required>
+                        </div>
+
+                       <!-- Select de Bairros -->
+                        <select class="form-control" ng-disabled="!endereco.idCidade"
+                         ng-options="b.idBairro as b.nome for b in bairros | filter: {cidadeId: endereco.idCidade}"
+                         ng-model="endereco.idBairro"
+                         ng-show="selectBairro">
+                        <option value="">Selecione Bairro</option>
+                        </select>
+                </div>
+                </div>
+
+
+                <div class="col-md-3" ng-show="btnNewBairro">
+                <div class="form-group">
+                    <span style="margin-top:25px; float:left;"> <button type="submit" class="btn btn-primary" ng-click="newBairro()">Novo Bairro</button></span>
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-show="btnBairroBack">
+                <div class="form-group">
+                    <span style="margin-top:25px;float:left;"><button type="submit" class="btn btn-danger" ng-click="backBairro('bairro')">Voltar</button></span>
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                <div class="form-group">
+                <hr>
+
+                <button type="submit" id="segundoPasso" class="btn btn-primary">Avançar</button>
+                <button ng-click="back('proprietario')" class="btn btn-danger">Voltar</button>
+                </div>
+                </div>
+
+
+
+         </form>
+
+               </div><!-- row -->
+               </div><!-- FORM ENDEREÇOS -->
+
+
+
+<!-- FORMULARIO DOS DADOS DOS IMOVEIs -->
+    <div ng-if="formImovel == 'ativo'">
+        <div class="row">
+             <form name="terceiro" ng-submit="terceiroPasso(imovel)">
+
+               <div class="col-md-6">
+               <div class="form-group">
+                    <label>Imovél</label>
+                    <select class="form-control"
+                            ng-model="imovel.isPublic"
+                            ng-options="x.b as x.label for x in boleano">
+                            <option value="">Imovel é Publico ?</option>
+                    </select>
+               </div>
+               </div>
+
+                <div class="col-md-3">
+                <div class="form-group">
+                    <label>Qual Operação ? </label>
+                    <select class="form-control"
+                                ng-options="op.nomeOperacao as op.nomeOperacao for op in operacoes"
+                                ng-model="imovel.tipoOperacaoImovel"
+                                ng-change="selectOperation(imovel.tipoOperacaoImovel)">
+                                <option value="">Selecione a Operação</option>
+                    </select>
+
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="operacao == 'ativo'">
+                <div class="form-group">
+                    <label>Selecione o Tipo</label>
+                    <select class="form-control"
+                            ng-model="imovel.tipoImovel"
+                            ng-options ="t.tipoImovel as t.tipoImovel for t in tipos"
+                            ng-change="selectTipo(imovel.tipoImovel)"
+                            >
+                        <option value="">Tipo de Imovel</option>
+                    </select>
+
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="valorImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="tex" class="form-control" ng-model="imovel.valorImovel" ui-money-mask="2">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="iptuImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Iptu</label>
+                    <input type="text" class="form-control" ng-model="imovel.iptuImovel" ui-money-mask="2">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="condominioImovel == 'ativo'" >
+                <div class="form-group">
+                    <label>Condominio</label>
+                    <input type="text" class="form-control" ng-model="imovel.condominioImovel" ui-money-mask="2">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="idadeConstrucaoImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Idade do Imovel</label>
+                    <input type="number" class="form-control" ng-model="imovel.idadeConstrucaoImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="suiteImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Suite(s)</label>
+                    <input type="number" class="form-control" ng-model="imovel.suiteImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="copaImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Copa</label>
+                    <input type="number" class="form-control" ng-model="imovel.copaImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="banheiroImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Banheiros</label>
+                    <input type="number" class="form-control" ng-model="imovel.banheiroImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="saladejantarImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Sala de Jantar</label>
+                    <input type="number" class="form-control" ng-model="imovel.saladejantarImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="mobiliadoImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Mobilado</label>
+                    <select class="form-control"
+                            ng-model="imovel.mobiliadoImovel"
+                            ng-options="x.b as x.label for x in boleano">
+                            <option value="">é mobilado ?</option>
+                    </select>
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="elevadorImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Elevador</label>
+                    <select class="form-control"
+                            ng-model="imovel.elevadorImovel"
+                            ng-options="x.b as x.label for x in boleano">
+                            <option value="">Tem Elevador ?</option>
+                    </select>
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="andarImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Andar do Imovel</label>
+                    <input type="number" class="form-control" ng-model="imovel.andarImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="garagemCobertaImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Garagem Coberta</label>
+                    <input type="number" class="form-control" placeholder="Quantas Vagas ?" ng-model="imovel.garagemCobertaImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="garagemDescobertaImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Garagem Descoberta</label>
+                    <input type="number" class="form-control" placeholder="Quantas Vagas ?" ng-model="imovel.garagemDescobertaImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="areaTerrenoImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Aréa do terreno</label>
+                    <input type="number" class="form-control" ng-model="imovel.areaTerrenoImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="areaUtilImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Aréa Util</label>
+                    <input type="number" class="form-control" ng-model="imovel.areaUtilImovel">
+                </div>
+                </div>
+
+                <div class="col-md-3" ng-if="areaTotalImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Aréa do total do Imovel</label>
+                    <input type="number" class="form-control" ng-model="imovel.areaTotalImovel">
+                </div>
+                </div>
+
+                <div class="col-md-12" ng-if="descricaoImovel == 'ativo'">
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea type="text" rows="5" class="form-control" ng-model="imovel.descricaoImovel"></textarea>
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                <div class="form-group">
+                <hr>
+
+                <button type="submit" id="terceiroPasso" class="btn btn-primary">Avançar</button>
+                <button ng-click="back('endereco')" class="btn btn-danger">Voltar</button>
+                </div>
+                </div>
+
+        </form>
+
+        </div><!-- ROW -->
+        </div><!-- FORMULARIO DADOS DOS IMOVEIS -->
+
+
+<!-- FORMULARIO DE IMAGENS-->
+    <div ng-if="formImagens == 'ativo'">
+              
+            <div class="alert alert-info">
+                <strong>Imagens</strong> permetida no máximo de <strong>2MB</strong> e formato <strong>jepg,jpg</strong>.
+            </div>
+
+        <div class="row">
+
+
+             <form name="first" ng-submit="quartoPasso(fotos)">
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemUm" name="arquivo"/ class="form-control" accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemDois" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemTres" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemQuatro" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemCinco" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemSeis" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemSete" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemOito" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemNove" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+
+               <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="file" ng-file-model="fotos.imagemDez" name="arquivo"/ class="form-control"  accept="image/x-png, image/gif, image/jpeg" data-max-size="2048" onchange="angular.element(this).scope().verificaFoto(this)">
+                  </div>
+               </div>
+
+
+                <div class="col-md-12">
+                <div class="form-group">
+                  <hr>
+                  <button type="submit" class="btn btn-primary">Avançar</button>
+                  <button ng-click="back('fotos')" class="btn btn-danger">Voltar</button>
+                </div>
+                </div>
+
+             </form>
+            
+            </div><!-- row -->
+
+             </div><!-- FORMULARIO DE IMAGENS-->
+
+           </div><!--modal-body -->
+
+
+              <div class="modal-footer">
+
+                 <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{progresso}}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{progresso}}%">
+                   {{progresso}}%
+                  </div>
+                </div>
+
+             </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Imovel Proprietario -->
+<div ng-include="'view/modais/imovelProprietario.htm'"></div>
+
+<!-- Modal Imovel Endereco -->
+<div ng-include="'view/modais/imovelEndereco.htm'"></div>
+
+<!-- Modal Imovel Dados -->
+<div ng-include="'view/modais/imovelDados.htm'"></div>
+
+<!-- Modal Imovel Foto -->
+<div ng-include="'view/modais/imovelFotos.htm'"></div>
+
+<!-- Modal Imovel Filtro -->
+<div ng-include="'view/modais/imovelFiltro.htm'"></div>
+
+<!-- Modal Delete Imovel -->
+<div ng-include="'view/modais/imovelDelete.htm'"></div>
+
+<!-- Modal Slide de Fotos -->
+<div ng-include="'view/modais/imovelSlideFotos.htm'"></div>
+</div>
+</div>

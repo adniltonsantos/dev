@@ -1,0 +1,121 @@
+ <!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!-- Importando CSS -->
+<link rel="stylesheet" type="text/css" href="view/css/gadeveloper.css">
+<link rel="stylesheet" type="text/css" href="view/css/site.css">
+<link rel="stylesheet" type="text/css" href="view/css/corretor.css">
+
+<!-- Importando Jquery -->
+<script src="view/node_modules/jquery/dist/jquery.js"></script>
+
+<!-- Importando Bootstrap -->
+<link rel="stylesheet" type="text/css" href="view//node_modules/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="view//node_modules/bootstrap-slider/dist/css/bootstrap-slider.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="view//node_modules/bootstrap-slider/src/js/bootstrap-slider.js"></script>
+
+<!-- Importando Font-Awesome-->
+<link rel="stylesheet" type="text/css" href="view/node_modules/font-awesome/css/font-awesome.min.css">
+<!-- Importando Angular -->
+<script src="view/node_modules/angular/angular.js"></script>
+<!-- Importando Local do Angular -->
+<script src="view/js/angular-locale_br.js"></script>
+<!-- Importando Angular-ui-Router -->
+<script src="view/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+<!-- Importando Angular-input-masks -->
+<script src="view/node_modules/angular-input-masks/releases/angular-input-masks-standalone.js"></script>
+<script src="view/node_modules/angular-input-masks/releases/angular-input-masks-dependencies.js"></script>
+<!-- Importando -br-filter- -->
+<script src="view/node_modules/angular-br-filters/release/angular-br-filters.min.js"></script>
+<!-- Importando Angular-NgStorage -->
+<script src="view/node_modules/ngstorage/ngStorage.js"></script>
+<!-- Importando Angular-Breadcrumb -->
+<script src="view/node_modules/angular-breadcrumb/angular-breadcrumb.js"></script>
+<!-- Importando Angular-file-upload -->
+<script src="view/node_modules/ng-file-model/ng-file-model.js"></script>
+<!-- Importando Ng-Imagem Preview -->
+<script src="view/node_modules/ngImageInputWithPreview-master/dist/ng-image-input-with-preview.js"></script>
+<!-- Importando App Angular Js -->
+<script src="view/js/app.js"></script>
+<!-- Importando App Angular Js -->
+<script src="view/js/router/routeConfig.js"></script>
+<!-- Importando Controllers -->
+<script src="view/js/controller/homeCtrl.js"></script>
+<!-- Importando Site Controller -->
+<script src="view/site/cidadeCtrl.js"></script>
+<!-- Importando Painel Controller -->
+<script src="view/painel/painelCtrl.js"></script>
+<!-- Serviços RestFul -->
+<script src="view/js/restful/serviceRestful.js"></script>
+<!-- Serviços Endereços -->
+<script src="view/js/services/serviceEnderecos.js"></script>
+
+<!-- Modulo Cliente -->
+<script src="view/js/controller/clienteCtrl.js"></script>
+<script src="view/js/controller/imovelCtrl.js"></script>
+<script src="view/js/controller/lostpwdCtrl.js"></script>
+<script src="view/js/controller/corretorCtrl.js"></script>
+<script src="view/js/controller/perfilCtrl.js"></script>
+<script src="view/js/controller/planosCtrl.js"></script>
+<script src="view/site/siteCtrl.js"></script>
+
+
+<!-- Script de Configuração do App do Facebook para Curti e Compartilhar -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '899515796794326', //ID do APP
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/pt_BR/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Script de Configuração do App do Facebook para Criar Conta e Logar-->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '110006319561262',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<title>Imobiliar</title>
+
+</head>
+
+<body>
+	<div id="controladoresAgular">
+ <ui-view></ui-view>
+  <base href="/dga/">
+ </div>
+
+</body>
+
+</html>

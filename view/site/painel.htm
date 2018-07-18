@@ -1,0 +1,108 @@
+<header>
+
+    <!--Parte do Logo e do Nome Imobiliar-->
+    <div class="logo-site">
+        <img src="view/imagens/logo-imobiliar.png" alt="logo do site imobiliar">
+    </div>
+    <!--Parte do Titulo do Imobiliar-->
+    <div class="titulo-site">
+        <a ui-sref="login"><img src="view/imagens/title-imobiliar.png" alt="Titulo do Site Imobiliar"></a>
+    </div>
+
+    <!--Parte de Criar Conta e Realizar Login-->
+    <div class="bloco-login-conta">
+        <!--Autenticacao-->
+            <div class="form-inline" >   
+
+                <form name="formAut" ng-submit="logando(user)">
+                    
+                    <div class="form-group">                
+                            <input type="email" class="form-control" placeholder="Digite seu E-mail" ng-model="user.emailUsuario">
+                    </div>
+
+                    <div class="form-group">                   
+                            <input type="password" class="form-control"  placeholder="Digite sua Senha" ng-model="user.senhaUsuario">
+                    </div>
+
+                    <div class="form-group">            
+                            <button type="submit" class="btn btn-success">OK</button>
+                    </div>
+
+                    <div class="form-group">   
+                            <button ng-click="FBLogin()" class="btn btn-primary">Facebook</button>
+                    </div>
+
+                </form>         
+            <div class="forgetSenha">
+                <a href="" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg">Esqueceu Senha ? </a>
+            </div>
+
+    </div>
+    
+    <!--Mensagem de Senha Incorreta-->          
+    <div class="erroSenha">       
+        <div class="alert alert-danger" ng-show="mensagemErroSenha">
+            <strong>Usuario ou Senha!</strong> incorreto.
+        </div>
+    </div>  
+
+
+ <!-- Modal Novo -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="closeModalPost">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Recuperação de Senha</h4>
+      </div>
+        
+       <form name="FormCliente" ng-submit="solicitaRecSenha(dados)">
+                
+                <div class="row">
+                <div class="col-md-12">
+                <div class="alert alert-danger" ng-show="mensagemErroEmail">
+                    <span style="font-size: 14px;"><strong>Ops !</strong> Este e-mail não tem registrado no nosso sistema.</span>
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                <div class="alert alert-info" ng-show="mensagemSucessoEmail">
+                    <span style="font-size: 14px"><strong>Sucesso</strong> Recuperação de Senha enviado.</span>
+                </div>
+                </div>
+                </div>
+
+           <div class="modal-body">
+              <div class="form-inline">
+
+                 <div class="form-group">
+                  <input type="emailUsuario" class="form-control" placeholder="Digite o e-mail" ng-model="dados.email" required> 
+                 </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">OK</button> 
+                </div>
+
+
+
+
+              </div>
+      
+           </div><!--modal-body -->
+
+
+
+
+         </form>
+        
+    </div>
+  </div>
+</div>   
+
+
+</header>
+
+<section>
+     <ui-view></ui-view>
+</section>

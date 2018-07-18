@@ -1,0 +1,53 @@
+<div id="topo">
+
+<!--Div do Logo -->
+	<div id="blocoLogo">
+		<img src="view/photos/perfil.jpg" alt="Foto do Perfil do Usuario">
+		<div class="nomeUsuario" >{{nomeUsuario}} {{sobrenome}} </div> 	
+	</div>
+
+<!--Div do Menu-->
+	<div class="bloco-menu">
+		<div class="menu">
+		
+		<!--Inserção de Modulos -->
+
+		<div class="dropdown">
+		  <button class="dropbtn"><a ui-sref="user.cliente">Clientes</a></button>
+  	</div>
+
+		<div class="dropdown">
+		  <button class="dropbtn"><a ui-sref="user.imovel">Imoveis</a></button>
+		</div>
+
+		<div class="dropdown">
+		 <!-- <button class="dropbtn"><a ui-sref="user.finaceiro">Financerio</a></button> -->
+		</div>
+
+		<div class="dropdown">
+		 <!-- <button class="dropbtn"><a ui-sref="user.email">E-mail</a></button> -->
+		</div>
+
+		<div class="dropdown">
+		 <!-- <button class="dropbtn"><a ui-sref="user.estatistica">Estatística</a></button> -->
+		</div>
+
+		<div class="dropdown">
+		 <!-- <button class="dropbtn"><a ng-href="">Vizinhos</a></button> -->
+		</div>
+
+		<div class="dropdown">
+		  <button class="dropbtn"><a ng-href="">Configurações</a></button>
+		  <div class="dropdown-content">
+			    <a ui-sref="user.planos">Planos</a>
+				<a ui-sref="user.perfil">Perfil</a>	
+				<a ng-click="logout()">Sair</a>					 
+		  </div>
+		</div>
+		
+	</div>
+	</div>
+
+ 
+
+</div>

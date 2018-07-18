@@ -1,0 +1,138 @@
+#ex1Slider .slider-selection {
+    background: #BABABA;
+}
+header {
+    width: 100%;
+    height: 85px;
+    border-bottom: 25px solid #51a8b1;
+    background-color: white;
+    padding: 0px 50px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.logo-site {
+    float: left;
+    padding-top: 7px;
+}
+
+.titulo-site {
+    float: left;
+    padding: 10px 0px 0px 20px;
+}
+/*Bloco de Login e Conta */
+.bloco-login-conta {
+    font-size: 24px;
+    width: auto;
+    float: right;
+    margin-top: 5px;
+}
+.forgetSenha {
+    font-size:10px;
+    color:#51a8b1;
+    font-weight: bold;
+    padding: 2px;
+}
+.erroSenha{
+    float: right;
+    padding: 3px 50px 0px 50px;
+}
+.conta{
+    float: left;
+    padding: 12px 30px 0px 0px;
+}
+.login{
+    float: left;
+    padding: 12px 0px 0px 30px;
+}
+.botaoFB {
+    width: 130px;
+    height: 25px;
+    float: left;
+    margin: 10px 0px 0px -40px;
+}
+.bkg-fundo {
+    width: 100%; 
+    height: 100%;
+    top: 0;
+    bottom: 0;
+
+}
+.bg {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+#fb-root{
+    padding: 20px 0px 0px 50px;
+    height: 50px;
+}
+
+.bloco-search{
+    width: 700px;
+    float: left;
+    padding: 70px 0px 0px 50px;
+}
+.bloco-search select {
+    border-style: none;
+    background:none;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.bloco-search option {
+    border-style: none;
+    background: transparent;
+}
+.bloco-form-conta{
+    float: right;
+    margin-right: 100px;
+    width: 400px;
+    border: 1px solid #C6C6C6;
+    padding: 20px;
+    background: white;
+    box-shadow: 2px 5px 15px black;
+}
+.bloco-form-conta-facebook{
+    float: right;
+    margin-right: 100px;
+    width: 400px;
+    border: 1px solid #C6C6C6;
+    padding: 20px;
+    background: white;
+    box-shadow: 2px 5px 15px black;
+}
+.tituloConta {
+    font-size: 16px;
+    font-weight: bold;
+    border-left: 10px solid #C6C6C6;
+    padding-left: 5px;
+    margin-bottom: 25px;
+}
+.termos {
+    margin-bottom: 20px;
+}
+.saudacoes {
+    margin-left: 500px;
+    float: left;
+    margin-top:200px;
+    font-size: 16px;
+}
+
+.tdCentralizado{
+    text-align: center;
+}
+
+
+/* Forget */
+
+.forgetsenha{
+    margin: 0 auto;
+    width: 500px;
+    padding: 20px;
+    text-align: center;
+}
+
