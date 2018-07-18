@@ -617,17 +617,17 @@
 
                     $scope.fotos.push(response[0]);              
 
-<<<<<<< HEAD
                     console.log($scope.fotos = response);
 
                     $scope.updateFotos = function(fotos){
-                          console.log(fotos);
-=======
-                    $scope.addfield=function(){
-                      $scope.fotos.push({})
-                    };                    
+                            console.log(fotos);
+                      $scope.addfield=function(){
+                        $scope.fotos.push({});
+                      };                 
 
-                });
+                    };
+
+              });
 
                     $scope.updateFotos = function(fotos){
                         
@@ -639,7 +639,7 @@
                         };
                         console.log(fotos);
 
->>>>>>> a678c6f61150428a5d0c0c7a518da532d8dc5632
+
                         restful.imovelUpdateFotos(id,token,fotos).success(function(response){
                              // Fecha o Modal
                                 $('#closeModalUpdateImagem').modal('hide');
